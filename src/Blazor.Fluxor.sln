@@ -50,11 +50,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReduxDevToolsIntegration.Cl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReduxDevToolsIntegration.Shared", "..\samples\03-ReduxDevToolsIntegration\ReduxDevToolsIntegration\ReduxDevToolsIntegration.Shared\ReduxDevToolsIntegration.Shared.csproj", "{484C7567-587A-43B9-9AF0-1C5E147E4A55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiddlewareSample.Server", "..\samples\04-MiddlewareSample\MiddlewareSample\MiddlewareSample.Server\MiddlewareSample.Server.csproj", "{DDC89ED4-A0DE-4164-8B53-D4EDFFE3181B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiddlewareSample.Server", "..\samples\04-MiddlewareSample\MiddlewareSample\MiddlewareSample.Server\MiddlewareSample.Server.csproj", "{DDC89ED4-A0DE-4164-8B53-D4EDFFE3181B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiddlewareSample.Client", "..\samples\04-MiddlewareSample\MiddlewareSample\MiddlewareSample.Client\MiddlewareSample.Client.csproj", "{A317DEF8-B9DC-4B5B-B450-8C9C6F33BD50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiddlewareSample.Client", "..\samples\04-MiddlewareSample\MiddlewareSample\MiddlewareSample.Client\MiddlewareSample.Client.csproj", "{A317DEF8-B9DC-4B5B-B450-8C9C6F33BD50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiddlewareSample.Shared", "..\samples\04-MiddlewareSample\MiddlewareSample\MiddlewareSample.Shared\MiddlewareSample.Shared.csproj", "{B3D11A9E-AD0C-4FE3-81EA-9AD4389737E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiddlewareSample.Shared", "..\samples\04-MiddlewareSample\MiddlewareSample\MiddlewareSample.Shared\MiddlewareSample.Shared.csproj", "{B3D11A9E-AD0C-4FE3-81EA-9AD4389737E6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06-Full stack example", "06-Full stack example", "{6140E1FC-9687-4711-A963-80FCAC770E9F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FullStackSample.Client", "..\samples\06-FullStackSample\FullStackSample\FullStackSample.Client\FullStackSample.Client.csproj", "{896D25A9-7957-4C44-817C-56FE85A80B34}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FullStackSample.Api", "..\samples\06-FullStackSample\FullStackSample\FullStackSample.Api\FullStackSample.Api.csproj", "{46BD1D1D-9D2D-4F30-B4C1-D4D7C2AAE9A2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FullStackSample.Server", "..\samples\06-FullStackSample\FullStackSample\FullStackSample.Server\FullStackSample.Server.csproj", "{B200D959-02D7-477F-83C2-3AB9355FFA8D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FullStackSample.DomainLayer", "..\samples\06-FullStackSample\FullStackSample\FullStackSample.DomainLayer\FullStackSample.DomainLayer.csproj", "{9918FFB5-D2F9-48F9-9BCC-0C429A5FBDA1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -130,6 +140,22 @@ Global
 		{B3D11A9E-AD0C-4FE3-81EA-9AD4389737E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3D11A9E-AD0C-4FE3-81EA-9AD4389737E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3D11A9E-AD0C-4FE3-81EA-9AD4389737E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{896D25A9-7957-4C44-817C-56FE85A80B34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{896D25A9-7957-4C44-817C-56FE85A80B34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{896D25A9-7957-4C44-817C-56FE85A80B34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{896D25A9-7957-4C44-817C-56FE85A80B34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46BD1D1D-9D2D-4F30-B4C1-D4D7C2AAE9A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46BD1D1D-9D2D-4F30-B4C1-D4D7C2AAE9A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46BD1D1D-9D2D-4F30-B4C1-D4D7C2AAE9A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46BD1D1D-9D2D-4F30-B4C1-D4D7C2AAE9A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B200D959-02D7-477F-83C2-3AB9355FFA8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B200D959-02D7-477F-83C2-3AB9355FFA8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B200D959-02D7-477F-83C2-3AB9355FFA8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B200D959-02D7-477F-83C2-3AB9355FFA8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9918FFB5-D2F9-48F9-9BCC-0C429A5FBDA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9918FFB5-D2F9-48F9-9BCC-0C429A5FBDA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9918FFB5-D2F9-48F9-9BCC-0C429A5FBDA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9918FFB5-D2F9-48F9-9BCC-0C429A5FBDA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -156,6 +182,11 @@ Global
 		{DDC89ED4-A0DE-4164-8B53-D4EDFFE3181B} = {415FF6D9-06F9-44DD-BD46-5857F8B868C4}
 		{A317DEF8-B9DC-4B5B-B450-8C9C6F33BD50} = {415FF6D9-06F9-44DD-BD46-5857F8B868C4}
 		{B3D11A9E-AD0C-4FE3-81EA-9AD4389737E6} = {415FF6D9-06F9-44DD-BD46-5857F8B868C4}
+		{6140E1FC-9687-4711-A963-80FCAC770E9F} = {1A6663AC-4F1F-40AD-8D03-0B0977ED466D}
+		{896D25A9-7957-4C44-817C-56FE85A80B34} = {6140E1FC-9687-4711-A963-80FCAC770E9F}
+		{46BD1D1D-9D2D-4F30-B4C1-D4D7C2AAE9A2} = {6140E1FC-9687-4711-A963-80FCAC770E9F}
+		{B200D959-02D7-477F-83C2-3AB9355FFA8D} = {6140E1FC-9687-4711-A963-80FCAC770E9F}
+		{9918FFB5-D2F9-48F9-9BCC-0C429A5FBDA1} = {6140E1FC-9687-4711-A963-80FCAC770E9F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B1F2E0DF-C651-48A3-83E3-3B77D34EC3A2}
