@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Components.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace FullStackSample.Client
+namespace FullStackSample.Client.Website
 {
 	public class Startup
 	{

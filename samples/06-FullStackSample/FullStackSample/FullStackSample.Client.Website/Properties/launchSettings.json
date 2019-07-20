@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "FullStackSample.Client": {
+    "FullStackSample.Client.Website": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FullStackSample.Api\FullStackSample.Api.csproj" />
-    <ProjectReference Include="..\FullStackSample.Client\FullStackSample.Client.csproj" />
+    <ProjectReference Include="..\FullStackSample.Client.Website\FullStackSample.Client.Website.csproj" />
     <ProjectReference Include="..\FullStackSample.DomainLayer\FullStackSample.DomainLayer.csproj" />
   </ItemGroup>
 
