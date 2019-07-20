@@ -1,6 +1,7 @@
-﻿using FullStackSample.DomainLayer.ServicesImpl;
+﻿using FullStackSample.Api.Requests;
+using FullStackSample.DomainLayer.ServicesImpl;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
 namespace FullStackSample.Server.Controllers
@@ -8,16 +9,19 @@ namespace FullStackSample.Server.Controllers
 	public class TestController : Controller
 	{
 		readonly FullStackDbContext DbContext;
+		readonly IMediator Mediator;
 
-		public TestController(FullStackDbContext dbContext)
+		public TestController(FullStackDbContext dbContext, IMediator mediator)
 		{
 			DbContext = dbContext;
+			Mediator = mediator;
 		}
 
-		public async Task<IActionResult> Index()
+		public async Task<SearchClientsResponse> Index()
 		{
-		int count = await DbContext.Products.CountAsync();
-			return View();
+			var request = new SearchClientsQuery("Client");
+			var response = await Mediator.Send<SearchClientsResponse>(request);
+			return response;
 		}
 	}
 }

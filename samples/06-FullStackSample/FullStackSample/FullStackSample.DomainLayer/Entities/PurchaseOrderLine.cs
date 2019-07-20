@@ -1,4 +1,4 @@
-﻿namespace FullStackSample.DomainLayer.Models
+﻿namespace FullStackSample.DomainLayer.Entities
 {
 	public class PurchaseOrderLine
 	{

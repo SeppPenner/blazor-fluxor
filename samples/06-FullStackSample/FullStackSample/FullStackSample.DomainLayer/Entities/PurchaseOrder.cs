@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace FullStackSample.DomainLayer.Models
+namespace FullStackSample.DomainLayer.Entities
 {
 	public class PurchaseOrder
 	{

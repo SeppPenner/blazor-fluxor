@@ -7,15 +7,13 @@
 
 <div class="@NavMenuCssClass" @onclick="@ToggleNavMenu">
 	<ul class="nav flex-column">
-		<li class="nav-item px-3">
-			<NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-				<span class="oi oi-home" aria-hidden="true"></span> Home
-			</NavLink>
-		</li>
+		<MainMenuItem Css="oi-home" Url="/" LinkText="Home" />
+		<MainMenuItem Css="oi-person" Url="/clients" LinkText="Clients" />
 	</ul>
 </div>
 
-@code {
+@code
+{
 	bool collapseNavMenu = true;
 
 	string NavMenuCssClass => collapseNavMenu ? "collapse" : null;

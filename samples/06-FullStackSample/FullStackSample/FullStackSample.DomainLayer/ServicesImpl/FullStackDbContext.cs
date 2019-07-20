@@ -1,4 +1,4 @@
-﻿using FullStackSample.DomainLayer.Models;
+﻿using FullStackSample.DomainLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace FullStackSample.DomainLayer.ServicesImpl

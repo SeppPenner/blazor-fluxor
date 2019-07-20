@@ -1,6 +1,6 @@
-﻿namespace FullStackSample.DomainLayer.Models
+﻿namespace FullStackSample.DomainLayer.Entities
 {
-	public class ProductType
+	public class Client
 	{
 		public int Id { get; private set; }
 		public string Name { get; set; }

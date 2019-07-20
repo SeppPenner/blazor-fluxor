@@ -19,7 +19,7 @@ namespace FullStackSample.DomainLayer.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("FullStackSample.DomainLayer.Models.Client", b =>
+            modelBuilder.Entity("FullStackSample.DomainLayer.Entities.Client", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -37,7 +37,7 @@ namespace FullStackSample.DomainLayer.Migrations
                     b.ToTable("Clients");
                 });
 
-            modelBuilder.Entity("FullStackSample.DomainLayer.Models.Product", b =>
+            modelBuilder.Entity("FullStackSample.DomainLayer.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -63,7 +63,7 @@ namespace FullStackSample.DomainLayer.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("FullStackSample.DomainLayer.Models.ProductType", b =>
+            modelBuilder.Entity("FullStackSample.DomainLayer.Entities.ProductType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -81,7 +81,7 @@ namespace FullStackSample.DomainLayer.Migrations
                     b.ToTable("ProductTypes");
                 });
 
-            modelBuilder.Entity("FullStackSample.DomainLayer.Models.PurchaseOrder", b =>
+            modelBuilder.Entity("FullStackSample.DomainLayer.Entities.PurchaseOrder", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -96,7 +96,7 @@ namespace FullStackSample.DomainLayer.Migrations
                     b.ToTable("PurchaseOrders");
                 });
 
-            modelBuilder.Entity("FullStackSample.DomainLayer.Models.PurchaseOrderLine", b =>
+            modelBuilder.Entity("FullStackSample.DomainLayer.Entities.PurchaseOrderLine", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -119,27 +119,27 @@ namespace FullStackSample.DomainLayer.Migrations
                     b.ToTable("PurchaseOrderLine");
                 });
 
-            modelBuilder.Entity("FullStackSample.DomainLayer.Models.Product", b =>
+            modelBuilder.Entity("FullStackSample.DomainLayer.Entities.Product", b =>
                 {
-                    b.HasOne("FullStackSample.DomainLayer.Models.ProductType", "Type")
+                    b.HasOne("FullStackSample.DomainLayer.Entities.ProductType", "Type")
                         .WithMany()
                         .HasForeignKey("TypeId");
                 });
 
-            modelBuilder.Entity("FullStackSample.DomainLayer.Models.PurchaseOrder", b =>
+            modelBuilder.Entity("FullStackSample.DomainLayer.Entities.PurchaseOrder", b =>
                 {
-                    b.HasOne("FullStackSample.DomainLayer.Models.Client", "Client")
+                    b.HasOne("FullStackSample.DomainLayer.Entities.Client", "Client")
                         .WithMany()
                         .HasForeignKey("ClientId");
                 });
 
-            modelBuilder.Entity("FullStackSample.DomainLayer.Models.PurchaseOrderLine", b =>
+            modelBuilder.Entity("FullStackSample.DomainLayer.Entities.PurchaseOrderLine", b =>
                 {
-                    b.HasOne("FullStackSample.DomainLayer.Models.PurchaseOrder", "Order")
+                    b.HasOne("FullStackSample.DomainLayer.Entities.PurchaseOrder", "Order")
                         .WithMany("Lines")
                         .HasForeignKey("OrderId");
 
-                    b.HasOne("FullStackSample.DomainLayer.Models.Product", "Product")
+                    b.HasOne("FullStackSample.DomainLayer.Entities.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId");
                 });
