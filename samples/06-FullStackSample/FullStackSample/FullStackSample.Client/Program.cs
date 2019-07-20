@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Blazor.Hosting;
 
-namespace FullStackSample.Client.Website
+namespace FullStackSample.Client
 {
 	public class Program
 	{

@@ -35,14 +35,14 @@ namespace FullStackSample.Server
 				app.UseBlazorDebugging();
 			}
 
-			app.UseClientSideBlazorFiles<Client.Website.Startup>();
+			app.UseClientSideBlazorFiles<Client.Startup>();
 
 			app.UseRouting();
 
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapDefaultControllerRoute();
-				endpoints.MapFallbackToClientSideBlazor<Client.Website.Startup>("index.html");
+				endpoints.MapFallbackToClientSideBlazor<Client.Startup>("index.html");
 			});
 		}
 	}

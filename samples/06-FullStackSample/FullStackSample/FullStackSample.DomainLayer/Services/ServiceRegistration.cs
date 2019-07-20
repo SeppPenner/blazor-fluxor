@@ -10,14 +10,14 @@ namespace FullStackSample.DomainLayer.Services
 {
 	public static class ServiceRegistration
 	{
-		public static void Register(IServiceCollection serviceCollection)
+		public static void Register(IServiceCollection services)
 		{
-			RegisterRequestHandlers(serviceCollection);
+			RegisterRequestHandlers(services);
 
-			serviceCollection.AddAutoMapper(typeof(SearchClientsQueryHandler).Assembly);
-			serviceCollection.AddMediatR(typeof(SearchClientsQueryHandler).Assembly);
+			services.AddAutoMapper(typeof(SearchClientsQueryHandler).Assembly);
+			services.AddMediatR(typeof(SearchClientsQueryHandler).Assembly);
 
-			serviceCollection.AddDbContext<FullStackDbContext>(
+			services.AddDbContext<FullStackDbContext>(
 					optionsAction: options =>
 					{
 						options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
@@ -26,9 +26,9 @@ namespace FullStackSample.DomainLayer.Services
 					optionsLifetime: ServiceLifetime.Singleton);
 		}
 
-		private static void RegisterRequestHandlers(IServiceCollection serviceCollection)
+		private static void RegisterRequestHandlers(IServiceCollection services)
 		{
-			serviceCollection.AddScoped<IRequestHandler<SearchClientsQuery, SearchClientsResponse>, SearchClientsQueryHandler>();
+			services.AddScoped<IRequestHandler<SearchClientsQuery, SearchClientsResponse>, SearchClientsQueryHandler>();
 		}
 	}
 }

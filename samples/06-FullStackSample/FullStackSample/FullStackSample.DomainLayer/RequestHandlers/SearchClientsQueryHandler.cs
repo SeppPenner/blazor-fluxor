@@ -29,7 +29,9 @@ namespace FullStackSample.DomainLayer.RequestHandlers
 				.Take(25)
 				.ToArrayAsync();
 			var apiClients = Mapper.Map<Api.Models.Client[]>(dbClients);
-			return new SearchClientsResponse(apiClients);
+			return new SearchClientsResponse(
+				errorMessage: null,
+				clients: apiClients);
 		}
 	}
 }

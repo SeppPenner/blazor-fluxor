@@ -1,0 +1,48 @@
+@page "/clients"
+@using Store.SearchClients
+@inherits Blazor.Fluxor.Components.FluxorComponent
+@inject IState<SearchClientsState> State
+@inject IDispatcher Dispatcher
+
+@if (State.Value.HasError)
+{
+	<div class="alert alert-danger" role="alert">
+		@State.Value.ErrorMessage
+	</div>
+}
+<h3>Search clients</h3>
+@if (State.Value.IsSearching)
+{
+	<h4>Searching</h4>
+}
+else
+{
+	<div class="input-group">
+		<label for="Name" class="col-form-label col-sm-12 col-lg-2">Name</label>
+		<input @bind="Name" type="text" id="Name" aria-label="Name" class="form-control col-sm-5 col-lg-4" />
+		<div class="input-group-append">
+			<button class="btn btn-primary" aria-label="Search" @onclick=@Search>Search</button>
+		</div>
+	</div>
+}
+@if (@State.Value.Clients.Any())
+{
+	<hr />
+	<ul>
+		@foreach (Api.Models.Client client in State.Value.Clients)
+		{
+			<li>@client.Id - @client.Name</li>
+		}
+	</ul>
+}
+
+@code
+{
+	string Name { get; set; }
+	void Search()
+	{
+		var action = new Api.Requests.SearchClientsQuery(Name);
+		Dispatcher.Dispatch(action);
+	}
+}
+
