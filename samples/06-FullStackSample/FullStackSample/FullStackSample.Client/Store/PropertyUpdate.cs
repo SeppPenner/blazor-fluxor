@@ -1,6 +1,6 @@
-﻿namespace FullStackSample.Client.Store.Events
+﻿namespace FullStackSample.Client.Store
 {
-	public struct PropertyUpdate<T>
+	public class PropertyUpdate<T>
 	{
 		public readonly bool Updated;
 		private readonly T Value;

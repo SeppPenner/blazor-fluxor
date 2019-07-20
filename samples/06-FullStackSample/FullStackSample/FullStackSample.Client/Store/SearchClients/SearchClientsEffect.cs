@@ -1,4 +1,5 @@
 ﻿using Blazor.Fluxor;
+using FullStackSample.Client.Store.EntityStateEvents;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Linq;
@@ -20,9 +21,13 @@ namespace FullStackSample.Client.Store.SearchClients
 		{
 			try
 			{
-				System.Diagnostics.Debug.WriteLine(new string('=', 32) + " Dispatching SearchClientsQuery");
 				var response = await Http.PostJsonAsync<Api.Requests.SearchClientsResponse>("/client/search", query);
-				System.Diagnostics.Debug.WriteLine(new string('=', 32) + $" Dispatching SearchClientsResponse {response.Clients.Count()} clients");
+				response.Clients.ToList().ForEach(x => dispatcher.Dispatch(
+					new ClientStateNotification(
+						id: x.Id,
+						name: x.Name)
+					)
+				);
 				dispatcher.Dispatch(response);
 			}
 			catch (Exception e)
@@ -32,7 +37,6 @@ namespace FullStackSample.Client.Store.SearchClients
 						errorMessage: e.Message,
 						clients: null
 					);
-				System.Diagnostics.Debug.WriteLine(new string('=', 32) + " Dispatching SearchClientsResponse (ERROR)");
 				dispatcher.Dispatch(errorAction);
 			}
 		}
