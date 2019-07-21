@@ -21,12 +21,15 @@ namespace FullStackSample.Client.Store.SearchClients
 			try
 			{
 				var response = await ApiService.Execute<Api.Requests.SearchClientsQuery, Api.Requests.SearchClientsResponse>(query);
-				response.Clients.ToList().ForEach(x => dispatcher.Dispatch(
-					new ClientStateNotification(
-						id: x.Id,
-						name: x.Name)
-					)
-				);
+
+				//TODO: Dispatch events to tell all other states that we have more up to date Client data
+				//response.Clients.ToList().ForEach(x => dispatcher.Dispatch(
+				//	new ClientStateNotification(
+				//		id: x.Id,
+				//		name: x.Name)
+				//	)
+				//);
+
 				dispatcher.Dispatch(response);
 			}
 			catch (Exception e)
