@@ -35,7 +35,7 @@ namespace FullStackSample.Client.Store.SearchClients
 			catch (Exception e)
 			{
 				System.Diagnostics.Debug.WriteLine(e.ToString());
-				var errorAction = 
+				var errorAction =
 					new Api.Requests.SearchClientsResponse(
 						errorMessage: e.Message,
 						clients: null
