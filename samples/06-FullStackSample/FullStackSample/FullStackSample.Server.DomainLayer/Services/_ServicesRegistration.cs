@@ -13,8 +13,8 @@ namespace FullStackSample.Server.DomainLayer.Services
 		{
 			RegisterRequestHandlers(services);
 
-			services.AddAutoMapper(typeof(SearchClientsQueryHandler).Assembly);
-			services.AddMediatR(typeof(SearchClientsQueryHandler).Assembly);
+			services.AddAutoMapper(typeof(ClientsSearchQueryHandler).Assembly);
+			services.AddMediatR(typeof(ClientsSearchQueryHandler).Assembly);
 
 			services.AddDbContext<FullStackDbContext>(
 					optionsAction: options =>
@@ -27,7 +27,7 @@ namespace FullStackSample.Server.DomainLayer.Services
 
 		private static void RegisterRequestHandlers(IServiceCollection services)
 		{
-			services.AddScoped<IRequestHandler<SearchClientsQuery, SearchClientsResponse>, SearchClientsQueryHandler>();
+			services.AddScoped<IRequestHandler<ClientsSearchQuery, ClientsSearchResponse>, ClientsSearchQueryHandler>();
 		}
 	}
 }

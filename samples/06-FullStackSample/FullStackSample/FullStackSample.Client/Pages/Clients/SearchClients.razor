@@ -10,6 +10,7 @@
 		@State.Value.ErrorMessage
 	</div>
 }
+
 <h3>Search clients</h3>
 @if (State.Value.IsSearching)
 {
@@ -19,30 +20,50 @@ else
 {
 	<div class="input-group">
 		<label for="Name" class="col-form-label col-sm-12 col-lg-2">Name</label>
-		<input @bind="Name" type="text" id="Name" aria-label="Name" class="form-control col-sm-5 col-lg-4" />
+		<input @bind="SearchName" type="text" id="Name" aria-label="Name" class="form-control col-sm-5 col-lg-4" />
 		<div class="input-group-append">
 			<button class="btn btn-primary" aria-label="Search" @onclick=@Search>Search</button>
 		</div>
 	</div>
 }
+
 @if (@State.Value.Clients.Any())
 {
 	<hr />
 	<ul>
 		@foreach (Api.Models.Client client in State.Value.Clients)
 		{
-			<li>@client.Id - @client.Name</li>
+			<li class="row mb-3">
+				<button class="col-sm-1 btn btn-info" @onclick=@(() => Edit(client.Id))>Edit</button>
+				<span class="col-sm-11">@client.Name</span>
+			</li>
 		}
 	</ul>
 }
-
-@code
+@if (!State.Value.IsSearching)
 {
-	string Name { get; set; }
+	<div class="row">
+		<button class="btn btn-secondary float-right" aria-label="Create" @onclick=@Create>Create</button>
+	</div>
+}
+
+@code {
+	string SearchName { get; set; }
 	void Search()
 	{
-		var action = new Api.Requests.SearchClientsQuery(Name);
+		var action = new Api.Requests.ClientsSearchQuery(SearchName);
 		Dispatcher.Dispatch(action);
 	}
+
+	void Create()
+	{
+		Dispatcher.Dispatch(new Blazor.Fluxor.Routing.Go("/clients/create"));
+	}
+
+	void Edit(int clientId)
+	{
+		Dispatcher.Dispatch(new Blazor.Fluxor.Routing.Go($"/clients/{clientId}/edit/"));
+	}
+
 }
 

@@ -15,9 +15,9 @@ namespace FullStackSample.Server.Controllers
 		}
 
 		[HttpPost]
-		public async Task<SearchClientsResponse> Search([FromBody]SearchClientsQuery query)
+		public async Task<ClientsSearchResponse> Search([FromBody]ClientsSearchQuery query)
 		{
-			var response = await Mediator.Send<SearchClientsResponse>(query);
+			var response = await Mediator.Send<ClientsSearchResponse>(query);
 			return response;
 		}
 	}

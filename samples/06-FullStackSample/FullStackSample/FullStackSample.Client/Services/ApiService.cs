@@ -68,7 +68,7 @@ namespace FullStackSample.Client.Services
 		{
 			var lookup = new Dictionary<Type, Uri>
 			{
-				[typeof(SearchClientsQuery)] = new Uri(UriHelper.GetBaseUri() + ClientUrls.Search)
+				[typeof(ClientsSearchQuery)] = new Uri(UriHelper.GetBaseUri() + ClientUrls.Search)
 			};
 			return new ReadOnlyDictionary<Type, Uri>(lookup);
 		}

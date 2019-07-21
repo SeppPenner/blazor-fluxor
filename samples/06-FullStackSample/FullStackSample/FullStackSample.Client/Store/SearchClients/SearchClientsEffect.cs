@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FullStackSample.Client.Store.SearchClients
 {
-	public class SearchClientsEffect : Effect<Api.Requests.SearchClientsQuery>
+	public class SearchClientsEffect : Effect<Api.Requests.ClientsSearchQuery>
 	{
 		private readonly IApiService ApiService;
 
@@ -16,19 +16,18 @@ namespace FullStackSample.Client.Store.SearchClients
 			ApiService = apiService;
 		}
 
-		protected async override Task HandleAsync(Api.Requests.SearchClientsQuery query, IDispatcher dispatcher)
+		protected async override Task HandleAsync(Api.Requests.ClientsSearchQuery query, IDispatcher dispatcher)
 		{
 			try
 			{
-				var response = await ApiService.Execute<Api.Requests.SearchClientsQuery, Api.Requests.SearchClientsResponse>(query);
+				var response = await ApiService.Execute<Api.Requests.ClientsSearchQuery, Api.Requests.ClientsSearchResponse>(query);
 
-				//TODO: Dispatch events to tell all other states that we have more up to date Client data
-				//response.Clients.ToList().ForEach(x => dispatcher.Dispatch(
-				//	new ClientStateNotification(
-				//		id: x.Id,
-				//		name: x.Name)
-				//	)
-				//);
+				response.Clients.ToList().ForEach(x => dispatcher.Dispatch(
+					new ClientStateNotification(
+						id: x.Id,
+						name: x.Name)
+					)
+				);
 
 				dispatcher.Dispatch(response);
 			}
@@ -36,7 +35,7 @@ namespace FullStackSample.Client.Store.SearchClients
 			{
 				System.Diagnostics.Debug.WriteLine(e.ToString());
 				var errorAction =
-					new Api.Requests.SearchClientsResponse(
+					new Api.Requests.ClientsSearchResponse(
 						errorMessage: e.Message,
 						clients: null
 					);

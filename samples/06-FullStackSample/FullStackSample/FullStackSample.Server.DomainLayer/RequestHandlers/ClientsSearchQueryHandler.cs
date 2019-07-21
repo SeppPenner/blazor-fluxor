@@ -9,18 +9,18 @@ using System.Threading.Tasks;
 
 namespace FullStackSample.Server.DomainLayer.RequestHandlers
 {
-	public class SearchClientsQueryHandler : IRequestHandler<SearchClientsQuery, SearchClientsResponse>
+	public class ClientsSearchQueryHandler : IRequestHandler<ClientsSearchQuery, ClientsSearchResponse>
 	{
 		private readonly FullStackDbContext DbContext;
 		private readonly IMapper Mapper;
 
-		public SearchClientsQueryHandler(FullStackDbContext dbContext, IMapper mapper)
+		public ClientsSearchQueryHandler(FullStackDbContext dbContext, IMapper mapper)
 		{
 			DbContext = dbContext;
 			Mapper = mapper;
 		}
 
-		public async Task<SearchClientsResponse> Handle(SearchClientsQuery request, CancellationToken cancellationToken)
+		public async Task<ClientsSearchResponse> Handle(ClientsSearchQuery request, CancellationToken cancellationToken)
 		{
 			IQueryable<Entities.Client> dbClientsQuery = DbContext.Clients;
 
@@ -34,7 +34,7 @@ namespace FullStackSample.Server.DomainLayer.RequestHandlers
 			Entities.Client[] dbClients = await dbClientsQuery.ToArrayAsync();
 
 			var apiClients = Mapper.Map<Api.Models.Client[]>(dbClients);
-			return new SearchClientsResponse(
+			return new ClientsSearchResponse(
 				errorMessage: null,
 				clients: apiClients);
 		}
