@@ -1,4 +1,4 @@
-using FullStackSample.DomainLayer.Services;
+using FullStackSample.Server.DomainLayer.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
@@ -21,7 +21,7 @@ namespace FullStackSample.Server
 				opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
 									new[] { "application/octet-stream" });
 			});
-			ServiceRegistration.Register(services);
+			ServicesRegistration.Register(services);
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

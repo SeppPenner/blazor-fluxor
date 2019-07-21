@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace FullStackSample.DomainLayer.Migrations
+namespace FullStackSample.Server.DomainLayer.Migrations
 {
     public partial class Initial : Migration
     {

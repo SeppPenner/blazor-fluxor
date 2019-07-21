@@ -1,11 +1,10 @@
-﻿using Blazor.Fluxor;
-using FullStackSample.Api.Models;
+﻿using FullStackSample.Api.Models;
 using System;
 using System.Collections.Generic;
 
 namespace FullStackSample.Api.Requests
 {
-	public class SearchClientsResponse : BaseApiResponse, IAction
+	public class SearchClientsResponse : BaseApiResponse
 	{
 		public IEnumerable<Client> Clients { get; set; } = Array.Empty<Client>();
 

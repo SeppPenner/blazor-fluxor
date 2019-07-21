@@ -62,7 +62,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FullStackSample.Api", "..\s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FullStackSample.Server", "..\samples\06-FullStackSample\FullStackSample\FullStackSample.Server\FullStackSample.Server.csproj", "{B200D959-02D7-477F-83C2-3AB9355FFA8D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FullStackSample.DomainLayer", "..\samples\06-FullStackSample\FullStackSample\FullStackSample.DomainLayer\FullStackSample.DomainLayer.csproj", "{9918FFB5-D2F9-48F9-9BCC-0C429A5FBDA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FullStackSample.Server.DomainLayer", "..\samples\06-FullStackSample\FullStackSample\FullStackSample.Server.DomainLayer\FullStackSample.Server.DomainLayer.csproj", "{9918FFB5-D2F9-48F9-9BCC-0C429A5FBDA1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FullStackSample.Client", "..\samples\06-FullStackSample\FullStackSample\FullStackSample.Client\FullStackSample.Client.csproj", "{A8E373B6-6983-4463-840C-FF0A176B31E2}"
 EndProject

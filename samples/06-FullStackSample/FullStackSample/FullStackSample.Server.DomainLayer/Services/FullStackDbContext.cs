@@ -1,7 +1,7 @@
-﻿using FullStackSample.DomainLayer.Entities;
+﻿using FullStackSample.Server.DomainLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace FullStackSample.DomainLayer.ServicesImpl
+namespace FullStackSample.Server.DomainLayer.Services
 {
 	public class FullStackDbContext : DbContext
 	{

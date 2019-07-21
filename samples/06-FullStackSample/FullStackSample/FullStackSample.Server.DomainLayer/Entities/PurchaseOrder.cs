@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace FullStackSample.DomainLayer.Entities
+namespace FullStackSample.Server.DomainLayer.Entities
 {
 	public class PurchaseOrder
 	{

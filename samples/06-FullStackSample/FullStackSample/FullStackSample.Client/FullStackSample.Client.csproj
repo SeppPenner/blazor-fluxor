@@ -10,9 +10,11 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Blazor" Version="3.0.0-preview6.19307.2" />
 		<PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="3.0.0-preview6.19307.2" PrivateAssets="all" />
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\src\Blazor.Fluxor\Blazor.Fluxor.csproj" />
 		<ProjectReference Include="..\FullStackSample.Api\FullStackSample.Api.csproj" />
 	</ItemGroup>
 

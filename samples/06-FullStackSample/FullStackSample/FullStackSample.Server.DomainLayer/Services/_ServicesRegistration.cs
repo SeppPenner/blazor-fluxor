@@ -1,14 +1,13 @@
 ﻿using AutoMapper;
 using FullStackSample.Api.Requests;
-using FullStackSample.DomainLayer.RequestHandlers;
-using FullStackSample.DomainLayer.ServicesImpl;
+using FullStackSample.Server.DomainLayer.RequestHandlers;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace FullStackSample.DomainLayer.Services
+namespace FullStackSample.Server.DomainLayer.Services
 {
-	public static class ServiceRegistration
+	public static class ServicesRegistration
 	{
 		public static void Register(IServiceCollection services)
 		{

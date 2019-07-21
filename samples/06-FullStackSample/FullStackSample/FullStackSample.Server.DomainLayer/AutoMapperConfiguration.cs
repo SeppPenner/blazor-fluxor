@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace FullStackSample.DomainLayer
+namespace FullStackSample.Server.DomainLayer
 {
 	public class AutoMapperConfiguration : Profile
 	{

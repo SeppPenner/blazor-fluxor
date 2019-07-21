@@ -1,9 +1,6 @@
-﻿
-using Blazor.Fluxor;
-
-namespace FullStackSample.Client.Store.EntityStateEvents
+﻿namespace FullStackSample.Client.Store.EntityStateEvents
 {
-	public class ClientStateNotification : IAction
+	public class ClientStateNotification
 	{
 		public int Id { get; set; }
 		public PropertyUpdate<string> Name { get; set; }

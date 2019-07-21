@@ -1,4 +1,4 @@
-﻿namespace FullStackSample.DomainLayer.Entities
+﻿namespace FullStackSample.Server.DomainLayer.Entities
 {
 	public class Client
 	{

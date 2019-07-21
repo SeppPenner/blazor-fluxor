@@ -1,27 +1,26 @@
 ﻿using Blazor.Fluxor;
+using FullStackSample.Client.Services;
 using FullStackSample.Client.Store.EntityStateEvents;
-using Microsoft.AspNetCore.Components;
 using System;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace FullStackSample.Client.Store.SearchClients
 {
 	public class SearchClientsEffect : Effect<Api.Requests.SearchClientsQuery>
 	{
-		private readonly HttpClient Http;
+		private readonly IApiService ApiService;
 
-		public SearchClientsEffect(HttpClient http)
+		public SearchClientsEffect(IApiService apiService)
 		{
-			Http = http;
+			ApiService = apiService;
 		}
 
 		protected async override Task HandleAsync(Api.Requests.SearchClientsQuery query, IDispatcher dispatcher)
 		{
 			try
 			{
-				var response = await Http.PostJsonAsync<Api.Requests.SearchClientsResponse>("/client/search", query);
+				var response = await ApiService.Execute<Api.Requests.SearchClientsQuery, Api.Requests.SearchClientsResponse>(query);
 				response.Clients.ToList().ForEach(x => dispatcher.Dispatch(
 					new ClientStateNotification(
 						id: x.Id,
@@ -32,6 +31,7 @@ namespace FullStackSample.Client.Store.SearchClients
 			}
 			catch (Exception e)
 			{
+				System.Diagnostics.Debug.WriteLine(e.ToString());
 				var errorAction = 
 					new Api.Requests.SearchClientsResponse(
 						errorMessage: e.Message,

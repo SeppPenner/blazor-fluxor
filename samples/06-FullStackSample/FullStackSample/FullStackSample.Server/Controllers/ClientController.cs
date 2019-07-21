@@ -1,5 +1,6 @@
 ﻿using FullStackSample.Api.Requests;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace FullStackSample.Server.Controllers
@@ -13,10 +14,10 @@ namespace FullStackSample.Server.Controllers
 			Mediator = mediator;
 		}
 
-		public async Task<SearchClientsResponse> Search()
+		[HttpPost]
+		public async Task<SearchClientsResponse> Search([FromBody]SearchClientsQuery query)
 		{
-			var request = new SearchClientsQuery("Client");
-			var response = await Mediator.Send<SearchClientsResponse>(request);
+			var response = await Mediator.Send<SearchClientsResponse>(query);
 			return response;
 		}
 	}

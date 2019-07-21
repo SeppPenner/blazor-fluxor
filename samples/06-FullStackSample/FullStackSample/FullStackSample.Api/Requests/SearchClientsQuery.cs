@@ -1,9 +1,8 @@
-﻿using Blazor.Fluxor;
-using MediatR;
+﻿using MediatR;
 
 namespace FullStackSample.Api.Requests
 {
-	public class SearchClientsQuery : IRequest<SearchClientsResponse>, IAction
+	public class SearchClientsQuery : IRequest<SearchClientsResponse>
 	{
 		public string Name { get; set; }
 
