@@ -1,6 +1,34 @@
 ﻿@page "/clients/{ClientId:int}/edit"
 @page "/clients/create"
 
+<nav aria-label="Breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">
+			<a href="/Clients">Clients</a>
+		</li>
+		<li class="breadcrumb-item active">
+			@ActionText
+		</li>
+	</ol>
+</nav>
+<EditForm Model="@Client" OnValidSubmit=@Submit>
+	<div class="form-group">
+		<label for="Name">Name</label>
+		<InputText @bind-Value=@Client.Name Class="form-control" aria-describedby="Name" />
+	</div>
+	<button type="submit" class="btn btn-primary">@SubmitText</button>
+</EditForm>
+
 @code {
-	[Parameter] int? ClientId { get; set; }
+[Parameter] int? ClientId { get; set; }
+bool IsNew => !ClientId.HasValue;
+string ActionText => IsNew ? "Create" : "Edit";
+string SubmitText => IsNew ? "Create" : "Save";
+
+Api.Models.Client Client = new Api.Models.Client();
+
+void Submit()
+{
+	System.Diagnostics.Debug.WriteLine(SubmitText);
+}
 }
