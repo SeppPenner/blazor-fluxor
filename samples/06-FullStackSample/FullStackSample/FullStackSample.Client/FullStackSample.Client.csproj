@@ -11,6 +11,8 @@
 		<PackageReference Include="Microsoft.AspNetCore.Blazor" Version="3.0.0-preview6.19307.2" />
 		<PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="3.0.0-preview6.19307.2" PrivateAssets="all" />
 		<PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+		<PackageReference Include="PeterLeslieMorris.Blazor.FluentValidation" Version="0.4.0-pre" />
+		<PackageReference Include="PeterLeslieMorris.Blazor.Validation" Version="0.4.0-pre" />
 	</ItemGroup>
 
 	<ItemGroup>

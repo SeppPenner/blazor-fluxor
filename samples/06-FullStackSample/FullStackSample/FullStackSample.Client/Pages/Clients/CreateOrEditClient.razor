@@ -12,9 +12,11 @@
 	</ol>
 </nav>
 <EditForm Model="@Client" OnValidSubmit=@Submit>
+	<PeterLeslieMorris.Blazor.Validation.Validate/>
 	<div class="form-group">
 		<label for="Name">Name</label>
 		<InputText @bind-Value=@Client.Name Class="form-control" aria-describedby="Name" />
+		<ValidationMessage For=@(() => Client.Name)/>
 	</div>
 	<button type="submit" class="btn btn-primary">@SubmitText</button>
 </EditForm>
