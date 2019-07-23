@@ -1,19 +1,26 @@
 ﻿using FullStackSample.Api.Models;
-using System;
 using System.Collections.Generic;
 
 namespace FullStackSample.Api.Requests
 {
-	public class ClientsSearchResponse : BaseApiResponse
+	public class ClientsSearchResponse : ApiResponse
 	{
-		public IEnumerable<ClientSummary> Clients { get; set; } = Array.Empty<ClientSummary>();
+		public IEnumerable<ClientSummary> Clients { get; set; }
 
-		public ClientsSearchResponse() { }
-
-		public ClientsSearchResponse(string errorMessage, IEnumerable<ClientSummary> clients)
-			: base(errorMessage)
+		public ClientsSearchResponse(IEnumerable<ClientSummary> clients)
 		{
-			Clients = clients ?? Array.Empty<ClientSummary>();
+			Clients = clients;
+		}
+
+		public ClientsSearchResponse()
+		{
+		}
+
+		public ClientsSearchResponse(
+			string errorMessage,
+			IEnumerable<KeyValuePair<string, string>> validationErrors)
+			: base(errorMessage, validationErrors)
+		{
 		}
 	}
 }

@@ -34,9 +34,7 @@ namespace FullStackSample.Server.DomainLayer.RequestHandlers
 			Entities.Client[] dbClients = await dbClientsQuery.ToArrayAsync();
 
 			var apiClients = Mapper.Map<Api.Models.ClientSummary[]>(dbClients);
-			return new ClientsSearchResponse(
-				errorMessage: null,
-				clients: apiClients);
+			return new ClientsSearchResponse(apiClients);
 		}
 	}
 }

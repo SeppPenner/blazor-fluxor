@@ -61,14 +61,17 @@ namespace FullStackSample.Client.Services
 		private class ClientUrls
 		{
 			const string Base = ServerApiVersion + "client/";
-			public const string Search = Base + "search";
+			public const string Search = Base + "search/";
+			public const string Create = Base + "create/";
 		}
 
 		private ReadOnlyDictionary<Type, Uri> CreateUrlsByRequestTypeLookup()
 		{
+			string baseUrl = UriHelper.GetBaseUri();
 			var lookup = new Dictionary<Type, Uri>
 			{
-				[typeof(ClientsSearchQuery)] = new Uri(UriHelper.GetBaseUri() + ClientUrls.Search)
+				[typeof(ClientsSearchQuery)] = new Uri(baseUrl + ClientUrls.Search),
+				[typeof(ClientCreateCommand)] = new Uri(baseUrl + ClientUrls.Create)
 			};
 			return new ReadOnlyDictionary<Type, Uri>(lookup);
 		}

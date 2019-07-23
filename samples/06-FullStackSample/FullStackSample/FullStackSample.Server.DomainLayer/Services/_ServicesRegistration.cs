@@ -28,6 +28,7 @@ namespace FullStackSample.Server.DomainLayer.Services
 		private static void RegisterRequestHandlers(IServiceCollection services)
 		{
 			services.AddScoped<IRequestHandler<ClientsSearchQuery, ClientsSearchResponse>, ClientsSearchQueryHandler>();
+			services.AddScoped<IRequestHandler<ClientCreateCommand, ClientCreateResponse>>();
 		}
 	}
 }

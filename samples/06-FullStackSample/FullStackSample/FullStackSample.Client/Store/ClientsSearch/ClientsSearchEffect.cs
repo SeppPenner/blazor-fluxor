@@ -33,11 +33,10 @@ namespace FullStackSample.Client.Store.ClientsSearch
 			}
 			catch (Exception e)
 			{
-				System.Diagnostics.Debug.WriteLine(e.ToString());
 				var errorAction =
 					new Api.Requests.ClientsSearchResponse(
 						errorMessage: e.Message,
-						clients: null
+						validationErrors: null
 					);
 				dispatcher.Dispatch(errorAction);
 			}
