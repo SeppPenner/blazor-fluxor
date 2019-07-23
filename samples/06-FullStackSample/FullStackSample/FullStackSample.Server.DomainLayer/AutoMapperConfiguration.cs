@@ -6,7 +6,7 @@ namespace FullStackSample.Server.DomainLayer
 	{
 		public AutoMapperConfiguration()
 		{
-			CreateMap<Entities.Client, Api.Models.Client>();
+			CreateMap<Entities.Client, Api.Models.ClientSummary>();
 		}
 	}
 }

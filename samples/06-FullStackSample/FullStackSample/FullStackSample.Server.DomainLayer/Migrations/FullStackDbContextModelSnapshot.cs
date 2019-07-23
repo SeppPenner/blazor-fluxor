@@ -15,7 +15,7 @@ namespace FullStackSample.Server.DomainLayer.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
+                .HasAnnotation("ProductVersion", "3.0.0-preview6.19304.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -27,12 +27,18 @@ namespace FullStackSample.Server.DomainLayer.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<int>("RegistrationNumber");
+
                     b.HasKey("Id");
 
                     b.HasIndex("Name")
                         .IsUnique()
-                        .HasName("uidx_Client_Name")
+                        .HasName("ix_Client_Name")
                         .HasFilter("[Name] IS NOT NULL");
+
+                    b.HasIndex("RegistrationNumber")
+                        .IsUnique()
+                        .HasName("ix_Client_RegistrationNumber");
 
                     b.ToTable("Clients");
                 });

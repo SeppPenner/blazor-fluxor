@@ -6,14 +6,14 @@ namespace FullStackSample.Api.Requests
 {
 	public class ClientsSearchResponse : BaseApiResponse
 	{
-		public IEnumerable<Client> Clients { get; set; } = Array.Empty<Client>();
+		public IEnumerable<ClientSummary> Clients { get; set; } = Array.Empty<ClientSummary>();
 
 		public ClientsSearchResponse() { }
 
-		public ClientsSearchResponse(string errorMessage, IEnumerable<Client> clients)
+		public ClientsSearchResponse(string errorMessage, IEnumerable<ClientSummary> clients)
 			: base(errorMessage)
 		{
-			Clients = clients ?? Array.Empty<Client>();
+			Clients = clients ?? Array.Empty<ClientSummary>();
 		}
 	}
 }

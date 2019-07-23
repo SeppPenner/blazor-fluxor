@@ -13,7 +13,8 @@ namespace FullStackSample.Server.DomainLayer.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
+                    RegistrationNumber = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -103,11 +104,17 @@ namespace FullStackSample.Server.DomainLayer.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "uidx_Client_Name",
+                name: "ix_Client_Name",
                 table: "Clients",
                 column: "Name",
                 unique: true,
                 filter: "[Name] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_Client_RegistrationNumber",
+                table: "Clients",
+                column: "RegistrationNumber",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "uidx_Product_Name",

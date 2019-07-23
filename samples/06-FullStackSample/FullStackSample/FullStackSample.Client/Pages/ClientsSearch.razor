@@ -1,7 +1,7 @@
-@page "/clients"
-@using Store.SearchClients
+﻿@page "/clients"
+@using Store.ClientsSearch
 @inherits Blazor.Fluxor.Components.FluxorComponent
-@inject IState<SearchClientsState> State
+@inject IState<ClientsSearchState> State
 @inject IDispatcher Dispatcher
 
 @if (State.Value.HasError)
@@ -31,7 +31,7 @@ else
 {
 	<hr />
 	<ul>
-		@foreach (Api.Models.Client client in State.Value.Clients)
+		@foreach (Api.Models.ClientSummary client in State.Value.Clients)
 		{
 			<li class="row mb-3">
 				<button class="col-sm-1 btn btn-info" @onclick=@(() => Edit(client.Id))>Edit</button>

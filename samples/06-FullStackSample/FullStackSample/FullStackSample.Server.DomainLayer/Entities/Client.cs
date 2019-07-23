@@ -4,5 +4,6 @@
 	{
 		public int Id { get; private set; }
 		public string Name { get; set; }
+		public int RegistrationNumber { get; set; }
 	}
 }

@@ -31,7 +31,12 @@ namespace FullStackSample.Server.DomainLayer.Services
 				.Entity<Client>()
 				.HasIndex(x => x.Name)
 				.IsUnique()
-				.HasName("uidx_Client_Name");
+				.HasName("ix_Client_Name");
+			modelBuilder
+				.Entity<Client>()
+				.HasIndex(x => x.RegistrationNumber)
+				.IsUnique()
+				.HasName("ix_Client_RegistrationNumber");
 			modelBuilder
 				.Entity<Product>()
 				.HasIndex(x => x.Name)

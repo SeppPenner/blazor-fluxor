@@ -19,7 +19,7 @@ namespace FullStackSample.Client
 					.AddMiddleware<RoutingMiddleware>()
 			);
 			services.AddFormValidation(config =>
-				config.AddFluentValidation(typeof(Api.Validators.ClientValidator).Assembly)
+				config.AddFluentValidation(typeof(Api.Models.ClientSummary).Assembly)
 			);
 		}
 

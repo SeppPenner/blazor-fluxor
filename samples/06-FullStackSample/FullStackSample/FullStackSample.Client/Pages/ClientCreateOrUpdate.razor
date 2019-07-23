@@ -1,0 +1,41 @@
+﻿@page "/clients/{ClientId:int}/edit"
+@page "/clients/create"
+
+<nav aria-label="Breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">
+			<a href="/Clients">Clients</a>
+		</li>
+		<li class="breadcrumb-item active">
+			@ActionText
+		</li>
+	</ol>
+</nav>
+<EditForm Model="@Client" OnValidSubmit=@Submit>
+	<PeterLeslieMorris.Blazor.Validation.Validate />
+	<div class="form-group">
+		<label for="Name">Name</label>
+		<InputText @bind-Value=@Client.Name Class="form-control" aria-describedby="Name" />
+		<ValidationMessage For=@(() => Client.Name) />
+	</div>
+	<div class="form-group">
+		<label for="RegistrationNumber">Registration number</label>
+		<InputNumber @bind-Value=@Client.RegistrationNumber Class="form-control" aria-describedby="Registration number"/>
+		<ValidationMessage For=@(() => Client.RegistrationNumber)/>
+	</div>
+	<button type="submit" class="btn btn-primary">@SubmitText</button>
+</EditForm>
+
+@code {
+	[Parameter] int? ClientId { get; set; }
+	bool IsNew => !ClientId.HasValue;
+	string ActionText => IsNew ? "Create" : "Edit";
+	string SubmitText => IsNew ? "Create" : "Save";
+
+	Api.Models.ClientCreateOrUpdate Client = new Api.Models.ClientCreateOrUpdate();
+
+	void Submit()
+	{
+		System.Diagnostics.Debug.WriteLine(SubmitText);
+	}
+}

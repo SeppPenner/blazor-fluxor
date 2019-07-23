@@ -5,13 +5,13 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FullStackSample.Client.Store.SearchClients
+namespace FullStackSample.Client.Store.ClientsSearch
 {
-	public class SearchClientsEffect : Effect<Api.Requests.ClientsSearchQuery>
+	public class ClientsSearchEffect : Effect<Api.Requests.ClientsSearchQuery>
 	{
 		private readonly IApiService ApiService;
 
-		public SearchClientsEffect(IApiService apiService)
+		public ClientsSearchEffect(IApiService apiService)
 		{
 			ApiService = apiService;
 		}
