@@ -2,6 +2,7 @@
 using FluentValidation;
 using FluentValidation.Results;
 using FullStackSample.Api.Requests;
+using FullStackSample.Server.DomainLayer.Extensions;
 using FullStackSample.Server.DomainLayer.Services;
 using MediatR;
 using System;
@@ -27,6 +28,11 @@ namespace FullStackSample.Server.DomainLayer.RequestHandlers
 		{
 			ValidationResult validationResult =
 				await Validator.ValidateAsync(request.Client, cancellationToken);
+
+			if (!validationResult.IsValid)
+				return new ClientCreateResponse(null, validationResult.ToResponseErrors());
+
+
 			throw new NotImplementedException();
 		}
 	}
