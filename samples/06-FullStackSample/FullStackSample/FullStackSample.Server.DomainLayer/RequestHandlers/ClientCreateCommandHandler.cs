@@ -32,7 +32,6 @@ namespace FullStackSample.Server.DomainLayer.RequestHandlers
 			if (!validationResult.IsValid)
 				return new ClientCreateResponse(null, validationResult.ToResponseErrors());
 
-
 			var clientEntity = Mapper.Map<Entities.Client>(request.Client);
 			DbContext.Clients.Add(clientEntity);
 			await DbContext.SaveChangesAsync();
