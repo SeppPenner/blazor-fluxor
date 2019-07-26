@@ -15,7 +15,10 @@ namespace FullStackSample.Server.DomainLayer.Services
 		public FullStackDbContext(DbContextOptions<FullStackDbContext> options)
 			: base(options)
 		{
-
+			// Enable lazy loading to ensure we avoid null references,
+			// but always specify in code which relations to fetch so we have
+			// better performance
+			ChangeTracker.LazyLoadingEnabled = true;
 		}
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

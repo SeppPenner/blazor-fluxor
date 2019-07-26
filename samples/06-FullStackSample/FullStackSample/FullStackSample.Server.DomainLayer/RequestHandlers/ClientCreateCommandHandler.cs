@@ -33,7 +33,12 @@ namespace FullStackSample.Server.DomainLayer.RequestHandlers
 				return new ClientCreateResponse(null, validationResult.ToResponseErrors());
 
 
-			throw new NotImplementedException();
+			var clientEntity = Mapper.Map<Entities.Client>(request.Client);
+			DbContext.Clients.Add(clientEntity);
+			await DbContext.SaveChangesAsync();
+
+			var apiClient = Mapper.Map<Api.Models.ClientCreateOrUpdate>(clientEntity);
+			return new ClientCreateResponse(apiClient);
 		}
 	}
 }

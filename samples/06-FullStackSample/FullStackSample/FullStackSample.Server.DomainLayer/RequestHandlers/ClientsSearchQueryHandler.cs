@@ -11,18 +11,18 @@ namespace FullStackSample.Server.DomainLayer.RequestHandlers
 {
 	public class ClientsSearchQueryHandler : IRequestHandler<ClientsSearchQuery, ClientsSearchResponse>
 	{
-		private readonly FullStackDbContext DbContext;
+		private readonly IClientReadRepository ClientRepository;
 		private readonly IMapper Mapper;
 
-		public ClientsSearchQueryHandler(FullStackDbContext dbContext, IMapper mapper)
+		public ClientsSearchQueryHandler(IClientReadRepository clientRepository, IMapper mapper)
 		{
-			DbContext = dbContext;
+			ClientRepository = clientRepository;
 			Mapper = mapper;
 		}
 
 		public async Task<ClientsSearchResponse> Handle(ClientsSearchQuery request, CancellationToken cancellationToken)
 		{
-			IQueryable<Entities.Client> dbClientsQuery = DbContext.Clients;
+			IQueryable<Entities.Client> dbClientsQuery = ClientRepository.CreateQuery();
 
 			if (!string.IsNullOrEmpty(request.Name))
 				dbClientsQuery = dbClientsQuery
