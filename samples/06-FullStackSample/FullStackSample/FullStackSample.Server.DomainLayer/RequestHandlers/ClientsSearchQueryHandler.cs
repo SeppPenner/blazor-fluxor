@@ -29,6 +29,7 @@ namespace FullStackSample.Server.DomainLayer.RequestHandlers
 					.Where(x => x.Name.Contains(request.Name));
 
 			dbClientsQuery = dbClientsQuery
+				.OrderBy(x => x.Name)
 				.Take(25);
 
 			Entities.Client[] dbClients = await dbClientsQuery.ToArrayAsync();

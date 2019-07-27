@@ -15,9 +15,12 @@ namespace FullStackSample.Server.DomainLayer.RequestHandlers
 	{
 		private readonly FullStackDbContext DbContext;
 		private readonly IMapper Mapper;
-		private readonly IValidator Validator;
+		private readonly IValidator<Api.Models.ClientCreateOrUpdate> Validator;
 
-		public ClientCreateCommandHandler(FullStackDbContext dbContext, IMapper mapper, IValidator validator)
+		public ClientCreateCommandHandler(
+			FullStackDbContext dbContext,
+			IMapper mapper,
+			IValidator<Api.Models.ClientCreateOrUpdate> validator)
 		{
 			DbContext = dbContext;
 			Mapper = mapper;

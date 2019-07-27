@@ -8,6 +8,7 @@ namespace FullStackSample.Api.Requests
 	{
 		public string ErrorMessage { get; private set; }
 		public bool HasErrors => !string.IsNullOrEmpty(ErrorMessage) || ValidationErrors.Any();
+		public bool IsValid => !HasErrors;
 		public bool Successful => !HasErrors;
 		public IEnumerable<KeyValuePair<string, string>> ValidationErrors { get; private set; }
 

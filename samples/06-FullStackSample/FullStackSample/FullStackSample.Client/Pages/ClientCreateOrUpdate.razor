@@ -1,5 +1,7 @@
 ﻿@page "/clients/{ClientId:int}/edit"
 @page "/clients/create"
+@inject IDispatcher Dispatcher
+@inject IState<FullStackSample.Client.Store.ClientCreate.ClientCreateState> State;
 
 <nav aria-label="Breadcrumb">
 	<ol class="breadcrumb">
@@ -11,6 +13,18 @@
 		</li>
 	</ol>
 </nav>
+@if (!String.IsNullOrEmpty(State.Value.ErrorMessage))
+{
+	<div class="alert alert-danger" role="alert">
+		@State.Value.ErrorMessage
+	</div>
+}
+@if (State.Value.IsExecutingApi)
+{
+	<div class="alert alert-info" role="alert">
+		@ActionInProgressText
+	</div>
+}
 <EditForm Model="@Client" OnValidSubmit=@Submit>
 	<PeterLeslieMorris.Blazor.Validation.Validate />
 	<div class="form-group">
@@ -20,10 +34,12 @@
 	</div>
 	<div class="form-group">
 		<label for="RegistrationNumber">Registration number</label>
-		<InputNumber @bind-Value=@Client.RegistrationNumber Class="form-control" aria-describedby="Registration number"/>
-		<ValidationMessage For=@(() => Client.RegistrationNumber)/>
+		<InputNumber @bind-Value=@Client.RegistrationNumber Class="form-control" aria-describedby="Registration number" />
+		<ValidationMessage For=@(() => Client.RegistrationNumber) />
 	</div>
-	<button type="submit" class="btn btn-primary">@SubmitText</button>
+	<button type="submit" class="btn btn-primary" enabled=@(!State.Value.IsExecutingApi)>
+		@(State.Value.IsExecutingApi ? ActionInProgressText : SubmitText)
+	</button>
 </EditForm>
 
 @code {
@@ -31,11 +47,13 @@
 	bool IsNew => !ClientId.HasValue;
 	string ActionText => IsNew ? "Create" : "Edit";
 	string SubmitText => IsNew ? "Create" : "Save";
+	string ActionInProgressText => IsNew ? "Creating..." : "Saving...";
 
 	Api.Models.ClientCreateOrUpdate Client = new Api.Models.ClientCreateOrUpdate();
 
 	void Submit()
 	{
-		System.Diagnostics.Debug.WriteLine(SubmitText);
+		var command = new Api.Requests.ClientCreateCommand(Client);
+		Dispatcher.Dispatch(command);
 	}
 }
