@@ -1,5 +1,7 @@
-﻿using FullStackSample.Api.Requests;
+﻿using Blazor.Fluxor;
+using FullStackSample.Api.Requests;
 using FullStackSample.Client.Exceptions;
+using FullStackSample.Client.Store.Main;
 using MediatR;
 using Microsoft.AspNetCore.Components;
 using Newtonsoft.Json;
@@ -7,8 +9,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Json = Newtonsoft.Json.JsonConvert;
 
 namespace FullStackSample.Client.Services
 {
@@ -17,16 +21,22 @@ namespace FullStackSample.Client.Services
 		private readonly HttpClient HttpClient;
 		private readonly IUriHelper UriHelper;
 		private readonly ReadOnlyDictionary<Type, Uri> UriByRequestType;
+		private readonly JsonSerializerSettings JsonOptions;
 
 		public ApiService(HttpClient httpClient, IUriHelper uriHelper)
 		{
 			HttpClient = httpClient;
 			UriHelper = uriHelper;
 			UriByRequestType = CreateUrlsByRequestTypeLookup();
+			JsonOptions = new JsonSerializerSettings
+			{
+				NullValueHandling = NullValueHandling.Ignore
+			};
 		}
 
 		public async Task<TResponse> Execute<TRequest, TResponse>(TRequest request)
 			where TRequest : IRequest<TResponse>
+			where TResponse : ApiResponse, new()
 		{
 			if (request == null)
 				throw new ArgumentNullException(nameof(request));
@@ -35,13 +45,27 @@ namespace FullStackSample.Client.Services
 			if (!UriByRequestType.TryGetValue(requestType, out Uri uri))
 				throw new ApiEndpointNotFoundException(requestType);
 
-			string jsonResponse = await ExecuteHttpRequest(request, uri);
-			return JsonConvert.DeserializeObject<TResponse>(jsonResponse);
+			try
+			{
+				string jsonResponse = await ExecuteHttpRequest(request, uri);
+				return Json.DeserializeObject<TResponse>(jsonResponse, JsonOptions);
+			}
+#if DEBUG
+			catch (Exception e)
+			{
+				System.Diagnostics.Debug.WriteLine(e.ToString());
+				throw;
+			}
+#endif
+			catch
+			{
+				throw;
+			}
 		}
 
 		private async Task<string> ExecuteHttpRequest(object request, Uri uri)
 		{
-			var httpContent = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+			var httpContent = new StringContent(Json.SerializeObject(request, JsonOptions), Encoding.UTF8, "application/json");
 			var httpMessage = new HttpRequestMessage(HttpMethod.Post, uri)
 			{
 				Content = httpContent

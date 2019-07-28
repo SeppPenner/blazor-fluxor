@@ -4,7 +4,7 @@ using Blazor.Fluxor;
 using Blazor.Fluxor.Routing;
 using FullStackSample.Client.Services;
 using PeterLeslieMorris.Blazor.Validation;
-
+using Blazor.Fluxor.ReduxDevTools;
 
 namespace FullStackSample.Client
 {
@@ -17,6 +17,7 @@ namespace FullStackSample.Client
 				options
 					.UseDependencyInjection(typeof(Startup).Assembly)
 					.AddMiddleware<RoutingMiddleware>()
+					.AddMiddleware<ReduxDevToolsMiddleware>()
 			);
 			services.AddFormValidation(config =>
 				config.AddFluentValidation(typeof(Api.Models.ClientSummary).Assembly)

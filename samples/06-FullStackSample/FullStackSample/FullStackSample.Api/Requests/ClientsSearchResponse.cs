@@ -1,4 +1,5 @@
 ﻿using FullStackSample.Api.Models;
+using System;
 using System.Collections.Generic;
 
 namespace FullStackSample.Api.Requests
@@ -14,6 +15,7 @@ namespace FullStackSample.Api.Requests
 
 		public ClientsSearchResponse()
 		{
+			Clients = Array.Empty<ClientSummary>();
 		}
 
 		public ClientsSearchResponse(

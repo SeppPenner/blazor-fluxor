@@ -1,43 +1,32 @@
 ﻿@page "/clients/{ClientId:int}/edit"
 @page "/clients/create"
+@inherits Blazor.Fluxor.Components.FluxorComponent
 @inject IDispatcher Dispatcher
-@inject IState<FullStackSample.Client.Store.ClientCreate.ClientCreateState> State;
+@inject IState<FullStackSample.Client.Store.ClientCreate.ClientCreateState> State
 
 <nav aria-label="Breadcrumb">
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item">
-			<a href="/Clients">Clients</a>
+			<a href="/clients">Clients</a>
 		</li>
 		<li class="breadcrumb-item active">
 			@ActionText
 		</li>
 	</ol>
 </nav>
-@if (!String.IsNullOrEmpty(State.Value.ErrorMessage))
-{
-	<div class="alert alert-danger" role="alert">
-		@State.Value.ErrorMessage
-	</div>
-}
-@if (State.Value.IsExecutingApi)
-{
-	<div class="alert alert-info" role="alert">
-		@ActionInProgressText
-	</div>
-}
 <EditForm Model="@Client" OnValidSubmit=@Submit>
 	<PeterLeslieMorris.Blazor.Validation.Validate />
 	<div class="form-group">
 		<label for="Name">Name</label>
-		<InputText @bind-Value=@Client.Name Class="form-control" aria-describedby="Name" />
+		<InputText @bind-Value=@Client.Name Class="form-control" aria-describedby="Name" @attributes=GetElementDisabled() />
 		<ValidationMessage For=@(() => Client.Name) />
 	</div>
 	<div class="form-group">
 		<label for="RegistrationNumber">Registration number</label>
-		<InputNumber @bind-Value=@Client.RegistrationNumber Class="form-control" aria-describedby="Registration number" />
+		<InputNumber @bind-Value=@Client.RegistrationNumber Class="form-control" aria-describedby="Registration number" @attributes=GetElementDisabled() />
 		<ValidationMessage For=@(() => Client.RegistrationNumber) />
 	</div>
-	<button type="submit" class="btn btn-primary" enabled=@(!State.Value.IsExecutingApi)>
+	<button type="submit" class="btn btn-primary" @attributes=@GetElementDisabled()>
 		@(State.Value.IsExecutingApi ? ActionInProgressText : SubmitText)
 	</button>
 </EditForm>
@@ -55,5 +44,12 @@
 	{
 		var command = new Api.Requests.ClientCreateCommand(Client);
 		Dispatcher.Dispatch(command);
+	}
+
+	Dictionary<string, object> GetElementDisabled()
+	{
+		if (State.Value.IsExecutingApi)
+			return new Dictionary<string, object> { ["disabled"] = "disabled" };
+		return new Dictionary<string, object>();
 	}
 }

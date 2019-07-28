@@ -1,16 +1,15 @@
-﻿using System;
-using System.Net.NetworkInformation;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Blazor.Fluxor;
-using FluentValidation.Results;
+using Blazor.Fluxor.Routing;
 using FullStackSample.Api.Models;
 using FullStackSample.Api.Requests;
 using FullStackSample.Client.Services;
 using FullStackSample.Client.Store.EntityStateEvents;
+using FullStackSample.Client.Store.Main;
 
 namespace FullStackSample.Client.Store.ClientCreate
 {
-	public class ClientCreateEffect : Effect<Api.Requests.ClientCreateCommand>
+	public class ClientCreateEffect : Effect<ClientCreateCommand>
 	{
 		private readonly IApiService ApiService;
 
@@ -23,19 +22,18 @@ namespace FullStackSample.Client.Store.ClientCreate
 		{
 			try
 			{
-				var response = await ApiService.Execute<Api.Requests.ClientCreateCommand, Api.Requests.ClientCreateResponse>(action);
-				if (response.IsValid)
-				{
+				var response = 
+					await ApiService.Execute<ClientCreateCommand, ClientCreateResponse>(action);
+				if (response.Successful)
 					NotifyStateChanged(dispatcher, response.Client);
-				}
+
 				dispatcher.Dispatch(response);
+				dispatcher.Dispatch(new Go("/clients"));
 			}
-			catch (Exception e)
+			catch
 			{
-				var errorAction = new Api.Requests.ClientCreateResponse(
-					errorMessage: e.Message,
-					validationErrors: null);
-				dispatcher.Dispatch(errorAction);
+				dispatcher.Dispatch(new ClientCreateResponse());
+				dispatcher.Dispatch(new NotifyUnexpectedServerErrorStatusChanged(true));
 			}
 		}
 

@@ -1,5 +1,7 @@
 ﻿@inherits LayoutComponentBase
+@inject IDispatcher Dispatcher
 @inject Blazor.Fluxor.IStore Store
+@inject IState<FullStackSample.Client.Store.Main.MainState> MainState
 @Store.Initialize()
 
 <div class="sidebar">
@@ -11,7 +13,32 @@
 		<a href="http://blazor.net" target="_blank" class="ml-md-auto">About</a>
 	</div>
 
+	@if (MainState.Value.HasUnexpectedServerError)
+	{
+		<div class="alert alert-danger" role="alert">
+			An unexpected error occurred.
+			<button type="button" class="close" aria-label="Close" @onclick=DismissError>
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+	}
+
 	<div class="content px-4">
 		@Body
 	</div>
 </div>
+
+@code
+{
+	protected override void OnInit()
+	{
+		MainState.Subscribe(this);
+	}
+
+	void DismissError()
+	{
+		Dispatcher.Dispatch(
+			new FullStackSample.Client.Store.Main.NotifyUnexpectedServerErrorStatusChanged(false)
+		);
+	}
+}

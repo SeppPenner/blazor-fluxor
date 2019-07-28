@@ -1,5 +1,4 @@
 ﻿using Blazor.Fluxor;
-using Newtonsoft.Json.Serialization;
 
 namespace FullStackSample.Client.Store.ClientCreate
 {

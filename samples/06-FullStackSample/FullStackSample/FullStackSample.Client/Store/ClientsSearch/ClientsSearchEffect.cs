@@ -1,6 +1,8 @@
 ﻿using Blazor.Fluxor;
+using FullStackSample.Api.Requests;
 using FullStackSample.Client.Services;
 using FullStackSample.Client.Store.EntityStateEvents;
+using FullStackSample.Client.Store.Main;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -31,14 +33,10 @@ namespace FullStackSample.Client.Store.ClientsSearch
 
 				dispatcher.Dispatch(response);
 			}
-			catch (Exception e)
+			catch
 			{
-				var errorAction =
-					new Api.Requests.ClientsSearchResponse(
-						errorMessage: e.Message,
-						validationErrors: null
-					);
-				dispatcher.Dispatch(errorAction);
+				dispatcher.Dispatch(new NotifyUnexpectedServerErrorStatusChanged(true));
+				dispatcher.Dispatch(new ClientsSearchResponse());
 			}
 		}
 	}
